@@ -1,0 +1,11 @@
+<div class="container-fluid" style="margin-top: 1cm; margin-left: 35%;width:30%;background-image: linear-gradient(to right bottom, #dce8f8, #d0d6e8, #c4c4d6, #bab2c4, #afa0b1);">
+    <form [formGroup]="resetPass" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label style="margin-top: .4cm;margin-left: .4cm;">Enter Email:</label>
+      <input type="text" class="form-control" formControlName="email" style="width: 90%; margin-left: .4cm" [class.is-invalid]="resetPass.get('email').invalid && resetPass.get('email').touched">
+     <small style="margin-left:.4cm" class="text-danger" [class.d-none]="resetPass.get('email').valid || resetPass.get('email').untouched">enter correct email</small> 
+      </div>
+      
+    <button [disabled]="!resetPass.valid" type="submit" class="btn btn-primary" style="margin-left:2.5cm;width:200px">Send link</button>
+  </form>
+  </div>

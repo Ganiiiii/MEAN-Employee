@@ -1,0 +1,108 @@
+<div class="container-fluid" style="margin-top: 1cm; margin-left: 25%;width:50%;background-image: linear-gradient(to right bottom, #dce8f8, #d0d6e8, #c4c4d6, #bab2c4, #afa0b1);">
+    <form [formGroup]="updateForm1" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label style="margin-top: .4cm;margin-left: .4cm;">First Name:</label>
+        <input type="text" class="form-control" formControlName="fname" style="width: 90%; margin-left: .4cm;" [class.is-invalid]="updateForm1.get('fname').invalid && updateForm1.get('fname').touched">
+        <small style="margin-left:.4cm" class="text-danger" [class.d-none]="updateForm1.get('fname').valid || updateForm1.get('fname').untouched">First name is required</small>
+      </div>
+      
+  
+      <div class="form-group">
+        <label style="margin-left: .4cm;" >Last Name:</label>
+        <input type="text" class="form-control" formControlName="lname" style="width: 90%; margin-left: .4cm;" [class.is-invalid]="updateForm1.get('lname').invalid && updateForm1.get('lname').touched">
+        <small style="margin-left:.4cm" class="text-danger" [class.d-none]="lastname.valid || lastname.untouched">last name is required</small>
+      </div>
+      
+
+      <div class="form-group">
+        <label style="margin-left: .4cm;">Email:</label>
+        <input type="text" class="form-control" formControlName="email" style="width: 90%; margin-left: .4cm" [class.is-invalid]="updateForm1.get('email').invalid && updateForm1.get('email').touched">
+        <small style="margin-left:.4cm" class="text-danger" [class.d-none]="email.valid || email.untouched || !email.errors">enter correct email</small>
+      </div>
+      
+
+      <div class="form-group">
+        <label style="margin-left: .4cm;">Mobile No:</label>
+        <input type="text" pattern="[1-9]{1}[0-9]{9}" maxlength="10" class="form-control" formControlName="phone" style="width: 90%; margin-left: .4cm" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+       <!--<small style="margin-left:.4cm"  class="text-danger" [class.d-none]="phone.valid || phone.untouched">enter correct phone no</small>-->
+          </div>
+
+          <div class="form-group">
+            <label style="margin-left: .4cm;">BirthDate:</label>
+            <input type="text" class="form-control" formControlName="birthdate" style="width: 90%; margin-left: .4cm;" bsDatepicker #datepickerDMY="bsDatepicker" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }">
+            </div>
+
+            <div class="form-group">
+              <label style="margin-left:.4cm">Address:</label>
+              <textarea class="form-control" style="width:90%;margin-left:.4cm" placeholder="Enter Your Address" formControlName="address"></textarea>
+             </div>
+
+      <div class="form-group" style="margin-left: .4cm;">
+      <input type="radio" name="gender" value="male" formControlName="gender"> Male<br>
+      <input type="radio" name="gender" value="female" formControlName="gender"> Female<br>
+      <input type="radio" name="gender" value="other" formControlName="gender"> Other
+      </div>
+  
+
+    <div class="form-group">
+      <label style="margin-left: .4cm;">Qualification:</label>
+      <select class="custom-select" formControlName="qualification" style="width: 90%; margin-left: .4cm;">
+      <option value="" selected disabled hidden>---Select---</option>  
+      <option>SSC</option>
+      <option>HSC</option>
+      <option>Diploma</option>
+      <option>BE</option>
+      <option>BSC</option>
+      </select>
+      </div>
+  
+      <div class="Form-group"  style="width: 90%; margin-left: .4cm;">
+      <label>State:</label>
+            <select formControlName="state" class="form-control" placeholder="Select State" (change)="changeState($event.target.value)">
+            <option *ngFor ="let count of stateList">{{count.name}} </option>
+          </select>
+      </div>
+      <br>
+  
+      <div class="Form-group" style="width: 90%; margin-left: .4cm;">
+          <label>City</label>
+          <select formControlName="city" class="form-control">
+           <option *ngFor ="let city of cities" value="{{city}}">{{city}}</option>
+        </select>
+      </div>
+  
+      
+    <div style="margin-left: .4cm;margin-top:.2cm">
+      <label>File:</label><br>
+     <ngx-avatar  src="{{imgsrc}}" [round]='true' size='100'></ngx-avatar>
+      <br>
+    <input type="file" id="my-input" fromControlName="profiePic" (change)="onFleLoad($event)" name="" accept="image/*">
+    </div>
+     
+    <br>
+       <div class="form-group">
+       <label style="margin-left: .4cm;">ZipCode:</label>
+       <input type="text" class="form-control" formControlName="zipCode" style="width: 20%; margin-left: .4cm;" mask="000-000">
+       </div>
+      
+
+    <div class="Form-group" style="margin-left: .4cm;margin-top:.2cm">
+    <label formArrayName="hobbies" *ngFor="let name of updateForm1.controls.hobbies.controls; let i = index">
+    <input type="checkbox" (change)="hobbiesCount(i)" [formControlName]="i">{{hobbies[i].name}}
+    </label><br>
+    <small style="margin-left:.4cm" class="text-danger" *ngIf="hobbiesError">enter none either more than 2 hobbies</small>
+    </div>
+
+    <div class="form-group">
+      <label style="margin-left: .4cm;">Skills:</label>
+      <tag-input style="width: 90%; margin-left: .4cm;" formControlName="skills" (onAdd) = "onAdd($event)" (onRemove)="onRemove($event)"></tag-input>
+     <small style="margin-left:.4cm" class="text-danger" *ngIf="skillsInvalid">enter none either more than 2 skills</small>
+      </div>
+      <div class="form-group">
+        <label style="margin-left: .4cm;">Salary:</label>
+        <input currencyMask class="form-control" type="text" style="width: 30%; margin-left: .4cm;" formControlName="salary" [options]="{ prefix: 'Rs ', thousands: '.', decimal: ',',allowNegative:'false'}">
+        </div>
+  <button [disabled]="!updateForm1.valid" type="submit" class="btn btn-primary" style="margin-left:6cm;width:200px">Update</button>
+  </form>
+  </div>
+ 

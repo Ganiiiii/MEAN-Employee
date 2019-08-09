@@ -1,0 +1,36 @@
+<div class="container-fluid" style="margin-top: 1cm; margin-left: 35%;width:30%;background-image: linear-gradient(to right bottom, #dce8f8, #d0d6e8, #c4c4d6, #bab2c4, #afa0b1);">
+        <form [formGroup]="addUser" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+          <label style="margin-top: .4cm;margin-left: .4cm;">First Name:</label>
+          <input type="text" class="form-control" formControlName="fname" style="width: 90%; margin-left: .4cm;" [class.is-invalid]="addUser.get('fname').invalid && addUser.get('fname').touched">
+          <small style="margin-left:.4cm" class="text-danger" [class.d-none]="addUser.get('fname').valid || addUser.get('fname').untouched">First name is required</small>
+        </div>
+        
+    
+        <div class="form-group">
+          <label style="margin-left: .4cm;">Last Name:</label>
+          <input type="text" class="form-control" formControlName="lname" style="width: 90%; margin-left: .4cm;" [class.is-invalid]="addUser.get('lname').invalid && addUser.get('lname').touched">
+          <small style="margin-left:.4cm" class="text-danger" [class.d-none]="addUser.get('lname').valid || addUser.get('lname').untouched">last name is required</small>
+        </div>
+    
+        <div class="form-group">
+          <label style="margin-left: .4cm;">Email:</label>
+          <input type="text" class="form-control" formControlName="email" style="width: 90%; margin-left: .4cm" [class.is-invalid]="addUser.get('email').invalid && addUser.get('email').touched">
+         <small style="margin-left:.4cm" class="text-danger" [class.d-none]="addUser.get('email').valid || addUser.get('email').untouched || !addUser.get('email').errors">enter correct email</small> 
+          </div>
+          
+        <div class="form-group">
+            <label style="margin-left: .4cm;">Password:</label>
+            <input type="password" class="form-control" formControlName="password" style="width: 90%; margin-left: .4cm" [class.is-invalid]="addUser.get('password').invalid && addUser.get('password').touched">
+            <small style="margin-left:.4cm" class="text-danger" [class.d-none]="addUser.get('password').valid || addUser.get('password').untouched">Please Enter Password</small> 
+        </div>
+        
+        <div class="form-group">
+            <label style="margin-left: .4cm;">Confirm Password:</label>
+            <input type="password" class="form-control" formControlName="conPass" style="width: 90%; margin-left: .4cm" [class.is-invalid]="addUser.get('email').invalid && addUser.get('email').touched">
+            <small style="margin-left:.4cm" class="text-danger" [class.d-none]="addUser.get('conPass').valid || addUser.get('conPass').untouched">Enter Both The Password Same</small> 
+        </div>
+
+        <button [disabled]="!addUser.valid" type="submit" class="btn btn-primary" style="margin-left:2.5cm;width:200px">ADD</button>
+      </form>
+      </div>

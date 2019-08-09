@@ -1,0 +1,17 @@
+<div class="container-fluid" style="margin-top: 1cm; margin-left: 35%;width:30%;background-image: linear-gradient(to right bottom, #dce8f8, #d0d6e8, #c4c4d6, #bab2c4, #afa0b1);">
+    <form [formGroup]="changePass" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label style="margin-top: .4cm;margin-left: .4cm;">Enter New Password:</label>
+      <input type="password" class="form-control" formControlName="newPass" style="width: 90%; margin-left: .4cm" [class.is-invalid]="changePass.get('newPass').invalid && changePass.get('newPass').touched">
+     <small style="margin-left:.4cm" class="text-danger" [class.d-none]="changePass.get('newPass').valid || changePass.get('newPass').untouched">enter correct email</small> 
+      </div>
+      
+    <div class="form-group">
+        <label style="margin-left: .4cm;">Confirm Password:</label>
+        <input type="password" class="form-control" formControlName="conPass" style="width: 90%; margin-left: .4cm" [class.is-invalid]="changePass.get('conPass').invalid && changePass.get('conPass').touched">
+        <small style="margin-left:.4cm" class="text-danger" [class.d-none]="changePass.get('conPass').valid || changePass.get('conPass').untouched">Please Enter Password</small> 
+    </div>
+
+    <button [disabled]="!changePass.valid" type="submit" class="btn btn-primary" style="margin-left:2.5cm;width:200px">Change</button>
+  </form>
+  </div>

@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/employee/register">Add Employee</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/employee/display">Display Employees</a>
+          </li>
+      </ul> 
+    </div>
+    <ul class="navbar-nav mr-auto">
+            <li class="nav-item" style="float: right" *ngIf="!login">
+                <a class="nav-link" routerLink="/auth/login">Login</a>
+            </li>
+            <li class="nav-item" style="float: right" *ngIf="!login">
+                <a class="nav-link" routerLink="/auth/register">Register</a> 
+            </li>
+            <li class="nav-item" style="float: right" *ngIf="login">
+              <a class="nav-link" (click)="logout()">Log Out</a>
+          </li>
+        </ul>
+  </nav>
