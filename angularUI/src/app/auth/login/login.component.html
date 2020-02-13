@@ -1,17 +1,17 @@
 <div class="container-fluid" style="margin-top: 1cm; margin-left: 35%;width:30%;background-image: linear-gradient(to right bottom, #dce8f8, #d0d6e8, #c4c4d6, #bab2c4, #afa0b1);">
-        <form [ ]="userLogin" (ngSubmit)="onSubmit()">
+        <form [formGroup]="userLogin" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label style="margin-top: .4cm;margin-left: .4cm;">Email:</label>
           <input type="text" class="form-control" formControlName="email" style="width: 90%; margin-left: .4cm" [class.is-invalid]="userLogin.get('email').invalid && userLogin.get('email').touched">
-         <small style="margin-left:.4cm" class="text-danger" [class.d-none]="userLogin.get('email').valid || userLogin.get('email').untouched || !userLogin.get('email').errors">enter correct email</small> 
+         <small style="margin-left:.4cm" class="text-danger" [class.d-none]="userLogin.get('email').valid || userLogin.get('email').untouched || !userLogin.get('email').errors">enter correct email</small>
           </div>
-          
+
         <div class="form-group">
             <label style="margin-left: .4cm;">Password:</label>
             <input type="password" class="form-control" formControlName="password" style="width: 90%; margin-left: .4cm" [class.is-invalid]="userLogin.get('password').invalid && userLogin.get('password').touched">
-            <small style="margin-left:.4cm" class="text-danger" [class.d-none]="userLogin.get('password').valid || userLogin.get('password').untouched">Please Enter Password</small> 
+            <small style="margin-left:.4cm" class="text-danger" [class.d-none]="userLogin.get('password').valid || userLogin.get('password').untouched">Please Enter Password</small>
         </div>
         <button [disabled]="!userLogin.valid" type="submit" class="btn btn-primary" style="margin-left:2.5cm;width:200px">Login</button>
-        <button type="button" class="btn btn-primary" style="margin-left:2.5cm;width:200px" (click)='forgotPass()'>forgot password</button>               
+        <button type="button" class="btn btn-primary" style="margin-left:2.5cm;width:200px" (click)='forgotPass()'>forgot password</button>
       </form>
       </div>
